@@ -58,10 +58,26 @@ const Products = () => {
               <h3>ALL PRODUCT</h3>
             </Col>
             <Col lg={2}>
-              <Button color="success" onClick={() => window.location = '/add/product'} style={{width:'100%'}}>ADD PRODUCT</Button>
+              <Button
+                color="success"
+                onClick={() => (window.location = "/add/product")}
+                style={{ width: "100%" }}
+              >
+                ADD PRODUCT
+              </Button>
             </Col>
           </Row>
-          <Row>{product ? renderProducts() : <h5>***No Products***</h5>}</Row>
+          <Row>
+            {product ? (
+              renderProducts()
+            ) : (
+              <Row>
+                <Col lg={12}>
+                  <h5>***No Products***</h5>
+                </Col>
+              </Row>
+            )}
+          </Row>
         </Card>
       </Col>
     </React.Fragment>

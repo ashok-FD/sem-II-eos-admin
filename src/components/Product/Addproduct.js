@@ -22,7 +22,7 @@ const Addproduct = () => {
       result = await API.createProduct(values);
       if (result.success === true) {
         toast.success(result.message, toastOptions);
-        window.location = '/products'
+        window.location = '/'
       } else {
         toast.error(result.error, toastOptions);
       }
