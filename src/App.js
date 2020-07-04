@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { Register, Login } from "./components/Admin/index";
+import HomePage from "./components/Layout/HomePage";
+import NotFound from "./components/Layout/NotFound";
 
-function App() {
+const App = () => {
+  const token = localStorage.getItem("usertoken");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Route
+        exact
+        path={"/"}
+        component={
+          token
+            ? HomePage
+            : () => {
+                return (window.location = "/login");
+              }
+        }
+      />
+      <Route exact path={"/register"} component={Register} />
+      <Route exact path={"/login"} component={Login} />
+      <Route exact path={"/profile"} component={token ? HomePage : NotFound} />
+      <Route
+        exact
+        path={"/product/:id"}
+        component={token ? HomePage : NotFound}
+      />
+      <Route
+        exact
+        path={"/add/product"}
+        component={token ? HomePage : NotFound}
+      />
+      <Route exact path={"/orders"} component={token ? HomePage : NotFound} />
+      <Route exact path={"*"} component={token ? null: NotFound} />
+    </Router>
   );
-}
+};
 
 export default App;
