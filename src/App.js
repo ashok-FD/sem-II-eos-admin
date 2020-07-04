@@ -6,7 +6,7 @@ import HomePage from "./components/Layout/HomePage";
 import NotFound from "./components/Layout/NotFound";
 
 const App = () => {
-  const token = localStorage.getItem("usertoken");
+  const token = localStorage.getItem("usertoken"); //admin
 
   return (
     <Router>
